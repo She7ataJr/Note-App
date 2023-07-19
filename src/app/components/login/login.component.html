@@ -1,0 +1,43 @@
+<section class=" pt-5 d-flex justify-content-center align-items-center ">
+  <div class="row g-0 shadow rounded overflow-hidden align-items-center  w-100">
+    <div class="col-md-8 d-none d-md-block ">
+      <div class="image">
+        .
+      </div>
+    </div>
+    <div class="col-md-4">
+      <form class="p-4" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+        <p class="text-center fs-2 p-3"><span class="text-primary fs-1 ">L</span>ogin</p>
+
+
+        <!-- Email Input -->
+
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>email</mat-label>
+          <input formControlName="email" type="email" matInput placeholder="Ex. example@example.com" />
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Email is <strong>invalid</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- password input -->
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">password is <strong>invalid</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- button submit  -->
+
+        <button [disabled]="loginForm.invalid" mat-raised-button color="primary" class="w-100">Login</button>
+      </form>
+
+    </div>
+  </div>
+</section>

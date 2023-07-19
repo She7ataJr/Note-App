@@ -1,0 +1,54 @@
+
+<header class="py-4">
+    <div class="d-flex justify-content-end ">
+        <button mat-raised-button color="primary" (click)="addNote()">Add Note</button>
+    </div>
+</header>
+<div class="search-input d-flex justify-content-center" *ngIf="Notes.length">
+    <mat-form-field class="w-75" appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="value">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      
+</div>
+<section>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col" *ngFor="let Note of Notes|filter:value index as index">
+                <div class="card shadow  h-100">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="position-absolute end-0 ">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="updateNote(Note)">
+                          <mat-icon class="text-warning ">edit</mat-icon>
+                          <span >update</span>
+                        </button>
+                        <button mat-menu-item [swal]="deleteSwal">
+                            <mat-icon class="text-danger ">delete</mat-icon>
+                        
+                          <span >Delete</span>
+                        </button>
+                        <swal
+                            #deleteSwal
+                            title="Delete {{ Note.title }}?"
+                            text="This cannot be undone"
+                            icon="question"
+                            [showCancelButton]="true"
+                            [focusCancel]="true"
+                            (confirm)="deleteNote(Note._id,index)">
+                            </swal>
+
+                      </mat-menu>
+                    <div class="card-body text-center ">
+                        <h3 class="fs-3">{{Note.title}}</h3>
+                        <p class="fs-5 text-muted">{{Note.desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

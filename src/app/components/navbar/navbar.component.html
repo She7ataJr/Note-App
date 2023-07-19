@@ -1,0 +1,61 @@
+<!-- <nav class="navbar navbar-expand bg-dark navbar-dark ">
+    <div class="container">
+      <h2 class="navbar-brand m-0 text-uppercase ">Note</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div  class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <ul class="d-flex list-unstyled mt-3">
+              <li class="mx-2" *ngIf="!_AuthService.NoteToken">
+                  <a routerLink="register" class="nav-link" routerLinkActive="active">Register</a>
+              </li>
+              <li class="mx-2" *ngIf="_AuthService.NoteToken">
+                  <a routerLink="login" class="nav-link" routerLinkActive="active">login</a>
+              </li>
+              <li *ngIf="_AuthService.NoteToken" class="mx-2">
+                  <a (click)="signOut()" class="cursor-pointer">logout</a>
+              </li>
+         </ul>
+            
+          </li>
+        </ul>
+        
+      </div>
+       </div>
+  </nav> -->
+
+  <nav class="bg-dark navbar-dark ">
+    <div class="container">
+      <div class="row justify-content-between   ">
+        <div class="home-title w-25  p-3 col-md-6 col-sm-12 ">
+            <p class="text-white fs-2 "><span class="text-primary fs-1">N</span>ote App </p>
+        </div>
+        <div class=" w-25 navLink p-3  text-end col-md-6 col-sm-12">
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white ">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button routerLink="register" mat-menu-item>
+              <mat-icon>
+                app_registration
+                </mat-icon>
+              <span >Sign up</span>
+            </button>
+            <button routerLink="login" mat-menu-item class="text-white">
+              <mat-icon>login</mat-icon>
+              <span>login</span>
+            </button>
+
+            <button *ngIf="!_AuthService.NoteToken" (click)="signOut()" mat-menu-item class="text-white">
+              <mat-icon>logout</mat-icon>
+              <span>Sign out</span>
+            </button>
+            
+          </mat-menu>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
