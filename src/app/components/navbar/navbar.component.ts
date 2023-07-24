@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class NavbarComponent {
   NoteToken:any
+  loggedIn:boolean=true
   menuName:string="Login"
   constructor(private _Router:Router ,public _AuthService:AuthService){
     this._Router.events.subscribe({
@@ -21,6 +22,10 @@ export class NavbarComponent {
     })
   }
   signOut(){
+    this._AuthService.user.next(null)
+   
+    this.loggedIn=false
+   
     localStorage.removeItem('NoteToken')
     this._Router.navigate(['/login'])
   }

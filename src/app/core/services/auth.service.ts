@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  NoteToken :any
   constructor(private _httpClient:HttpClient,private _Router:Router) {
     this.userData()
    }
-   NoteToken :any
   user:BehaviorSubject<any> = new BehaviorSubject(null)
   
   register(formData:object):Observable<any>{

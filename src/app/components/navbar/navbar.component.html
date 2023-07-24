@@ -8,14 +8,14 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
             <ul class="d-flex list-unstyled mt-3">
-              <li class="mx-2" *ngIf="!_AuthService.NoteToken">
+              <li *ngIf="!loggedIn" class="mx-2" >
                   <a routerLink="register" class="nav-link" routerLinkActive="active">Register</a>
               </li>
-              <li class="mx-2" *ngIf="_AuthService.NoteToken">
+              <li *ngIf="!loggedIn" class="mx-2" >
                   <a routerLink="login" class="nav-link" routerLinkActive="active">login</a>
               </li>
-              <li *ngIf="_AuthService.NoteToken" class="mx-2">
-                  <a (click)="signOut()" class="cursor-pointer">logout</a>
+              <li *ngIf="loggedIn" (click)="signOut()" class="mx-2">
+                  <button   class="cursor-pointer nav-link">logout</button>
               </li>
          </ul>
             
@@ -37,18 +37,18 @@
             <mat-icon>menu</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button routerLink="register" mat-menu-item>
+            <button *ngIf="!loggedIn" routerLink="register" mat-menu-item>
               <mat-icon>
                 app_registration
                 </mat-icon>
               <span >Sign up</span>
             </button>
-            <button routerLink="login" mat-menu-item class="text-white">
+            <button *ngIf="!loggedIn" routerLink="login" mat-menu-item class="text-white">
               <mat-icon>login</mat-icon>
               <span>login</span>
             </button>
 
-            <button *ngIf="!_AuthService.NoteToken" (click)="signOut()" mat-menu-item class="text-white">
+            <button *ngIf="loggedIn" (click)="signOut()" mat-menu-item class="text-white">
               <mat-icon>logout</mat-icon>
               <span>Sign out</span>
             </button>

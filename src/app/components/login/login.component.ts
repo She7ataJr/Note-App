@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LoginComponent {
   hide = true;
-
   constructor(private _FormBuilder:FormBuilder,
               private _AuthService:AuthService,
               private _Router:Router,
