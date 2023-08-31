@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     
     MatDialogRef.afterClosed().subscribe({
       next:(res)=>{
-        if(res === "add"){
+        if(res === "NoteAdded"){
           this.getNotes()
         }
       }
